@@ -17,7 +17,8 @@
       - [3.2.1 实验方法](#321-实验方法)
       - [3.2.2 实验结果](#322-实验结果)
     - [3.3 基于语料库的相似度计算](#33-基于语料库的相似度计算)
-  - [4 参考文献](#4-参考文献)
+  - [4 想法](#4-想法)
+  - [5 参考文献](#5-参考文献)
 
 ## 1 任务描述
 
@@ -147,7 +148,11 @@
 1. MTurk-771数据集在制作时，要求标注者对词对的相关性进行打分，因此其本身并不是一项面向词语相似度计算的任务。比如“水果”和“水果店”是相关的，但两者并不是相似的。基于Wordnet的方法本质上利用的是Wordnet所建立的词义图里节点的关系，和Wordnet关注的Synonym息息相关，更贴近于对“同义”、“近义”性的计算；而word2vec建立在大规模语料中词语的分布情况上，其定义的“similarity”更贴近于相关性，比如使用gensim的`most_similar()`方法计算“student”最相似的词，前10个词中包含“teacher”、“university”、“semester”等词，这些词从词义上看和“student”是高度相关的，但称不上同义、近义。
 2. 从训练规模的角度看，基于word2vec的方法所使用的语料资源更多，可能学习到了更多的词语间的交互信息，在表示和计算词义时占有优势。
 
-## 4 参考文献
+## 4 想法
+
+以上实验之外，对于使用BERT计算动态词向量，用以词汇相似度计算本人也有尝试，不过可能由于环境配置、算力限制和技术能力原因，效果很差，这里就没展示。具体思路为：将大规模语料输入到BERT模型，通过取出最后一层隐藏层/合并最后n层隐藏层得到每个token的向量表示，再对语料中的每个type取所有token的平均值作为该词的动态词向量表示，使用余弦值计算相似度。
+
+## 5 参考文献
 
 1. Guy Halawi, Gideon Dror, Evgeniy Gabrilovich, and Yehuda Koren. Large-scale learning of word relatedness with constraints. KDD ’12, page 1406–1414, New York, NY, USA. Association for Computing Machinery. 2012.
 2. George A. Miller. WordNet: A Lexical Database for English. Communications of the ACM Vol. 38, No. 11: 39-41. 1995.
