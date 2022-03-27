@@ -4,6 +4,8 @@
 
 作者：Nascent
 
+[github link](https://github.com/chnln/WordSimilarityComputation)
+
 - [词汇相似度计算](#词汇相似度计算)
   - [1 任务描述](#1-任务描述)
   - [2 实验环境](#2-实验环境)
